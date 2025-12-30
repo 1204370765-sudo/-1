@@ -1,0 +1,2202 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冲刺高才！- QQ飞车风格</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;800&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, 
+                #000428 0%, 
+                #004e92 25%, 
+                #00b4db 50%, 
+                #45b649 75%, 
+                #f46b45 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            animation: bgShift 15s infinite alternate;
+        }
+        
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1400px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #ff0080, #00ffcc, #ffeb3b, #ff0080) 1;
+            box-shadow: 0 0 50px rgba(255, 0, 128, 0.5),
+                        inset 0 0 30px rgba(0, 255, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                #ff0080, #00ffcc, #ffeb3b, #ff0080,
+                #00ffcc, #ffeb3b, #ff0080);
+            background-size: 400% 400%;
+            border-radius: 27px;
+            z-index: -1;
+            animation: borderGlow 3s infinite linear;
+        }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            background: linear-gradient(45deg, 
+                #ff0080 0%, 
+                #00ffcc 33%, 
+                #ffeb3b 66%, 
+                #ff0080 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(255, 0, 128, 0.5),
+                         0 0 60px rgba(0, 255, 204, 0.4),
+                         0 0 90px rgba(255, 235, 59, 0.3);
+            text-transform: uppercase;
+            animation: titleGlow 2s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 30px rgba(255, 0, 128, 0.5),
+                              0 0 60px rgba(0, 255, 204, 0.4),
+                              0 0 90px rgba(255, 235, 59, 0.3); }
+            100% { text-shadow: 0 0 40px rgba(255, 0, 128, 0.7),
+                                0 0 80px rgba(0, 255, 204, 0.6),
+                                0 0 120px rgba(255, 235, 59, 0.5); }
+        }
+        
+        .subtitle {
+            font-size: 2.2rem;
+            color: #00ffcc;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.6rem;
+            color: #ffeb3b;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(255, 235, 59, 0.5);
+        }
+        
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            gap: 30px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px 50px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #00ffcc, #ff0080) 1;
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.4),
+                        inset 0 0 30px rgba(255, 0, 128, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            animation: slideShine 3s infinite;
+        }
+        
+        @keyframes slideShine {
+            to { left: 100%; }
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .stat-label {
+            font-size: 1.8rem;
+            color: #ffeb3b;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 235, 59, 0.7);
+        }
+        
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            color: #00ffcc;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 25px 40px;
+            border-radius: 15px;
+            width: 100%;
+            text-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #00ffcc, #ff0080) 1;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5),
+                        inset 0 0 20px rgba(255, 0, 128, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .stat-value.warning {
+            color: #ff9800;
+            border-image: linear-gradient(45deg, #ff9800, #ffeb3b) 1;
+            text-shadow: 0 0 25px rgba(255, 152, 0, 0.8);
+            animation: warningPulse 1s infinite;
+        }
+        
+        .stat-value.danger {
+            color: #ff0080;
+            border-image: linear-gradient(45deg, #ff0080, #ff5252) 1;
+            text-shadow: 0 0 30px rgba(255, 0, 128, 0.9);
+            animation: dangerPulse 0.5s infinite;
+        }
+        
+        @keyframes warningPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(255, 152, 0, 0.5),
+                            inset 0 0 20px rgba(255, 235, 59, 0.2);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 40px rgba(255, 152, 0, 0.8),
+                            inset 0 0 30px rgba(255, 235, 59, 0.3);
+            }
+        }
+        
+        @keyframes dangerPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(255, 0, 128, 0.6),
+                            inset 0 0 20px rgba(255, 82, 82, 0.3);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 50px rgba(255, 0, 128, 1),
+                            inset 0 0 40px rgba(255, 82, 82, 0.5);
+            }
+        }
+        
+        .game-wrapper {
+            position: relative;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            padding: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                        inset 0 0 40px rgba(0, 255, 204, 0.1);
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #ff0080, #00ffcc, #ffeb3b) 1;
+            overflow: hidden;
+        }
+        
+        .game-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, 
+                #ff0080 0%, #00ffcc 33%, #ffeb3b 66%, #ff0080 100%);
+            background-size: 300% 300%;
+            border-radius: 30px;
+            z-index: -1;
+            animation: wrapperGlow 4s infinite linear;
+            opacity: 0.3;
+            filter: blur(15px);
+        }
+        
+        @keyframes wrapperGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        
+        #gameCanvas {
+            background: linear-gradient(180deg, 
+                #0a0a2a 0%,
+                #1a1a4a 30%,
+                #2a2a6a 70%,
+                #3a3a8a 100%);
+            border-radius: 15px;
+            border: 3px solid #00ffcc;
+            box-shadow: 0 0 50px rgba(0, 255, 204, 0.5),
+                        inset 0 0 30px rgba(255, 0, 128, 0.3);
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .control-btn {
+            background: linear-gradient(145deg, 
+                #ff0080 0%, 
+                #ff5252 50%, 
+                #ff0080 100%);
+            color: white;
+            border: none;
+            padding: 35px 60px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 4px solid #ffeb3b;
+            box-shadow: 0 15px 0 #c2185b,
+                        0 25px 40px rgba(255, 0, 128, 0.5);
+            min-width: 280px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(255, 235, 59, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%);
+            transform: rotate(45deg);
+            animation: buttonShine 3s infinite;
+        }
+        
+        @keyframes buttonShine {
+            0% { left: -60%; }
+            100% { left: 100%; }
+        }
+        
+        .control-btn:hover {
+            background: linear-gradient(145deg, 
+                #ff4081 0%, 
+                #ff7961 50%, 
+                #ff4081 100%);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 0 #c2185b,
+                        0 35px 60px rgba(255, 64, 129, 0.7);
+        }
+        
+        .control-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 8px 0 #c2185b,
+                        0 15px 30px rgba(255, 0, 128, 0.4);
+        }
+        
+        .control-btn.up {
+            background: linear-gradient(145deg, 
+                #00ffcc 0%, 
+                #00e5ff 50%, 
+                #00ffcc 100%);
+            box-shadow: 0 15px 0 #00897b,
+                        0 25px 40px rgba(0, 255, 204, 0.5);
+        }
+        
+        .control-btn.up:hover {
+            background: linear-gradient(145deg, 
+                #4dffea 0%, 
+                #33ccff 50%, 
+                #4dffea 100%);
+            box-shadow: 0 20px 0 #00897b,
+                        0 35px 60px rgba(0, 255, 204, 0.7);
+        }
+        
+        .control-btn.down {
+            background: linear-gradient(145deg, 
+                #ffeb3b 0%, 
+                #ffd740 50%, 
+                #ffeb3b 100%);
+            box-shadow: 0 15px 0 #f57f17,
+                        0 25px 40px rgba(255, 235, 59, 0.5);
+        }
+        
+        .control-btn.down:hover {
+            background: linear-gradient(145deg, 
+                #ffff6b 0%, 
+                #ffeb3b 50%, 
+                #ffff6b 100%);
+            box-shadow: 0 20px 0 #f57f17,
+                        0 35px 60px rgba(255, 235, 59, 0.7);
+        }
+        
+        .decision-modal {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.95) 0%,
+                rgba(26, 35, 126, 0.95) 100%);
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #ff0080, #00ffcc, #ffeb3b) 1;
+            border-radius: 25px;
+            padding: 50px;
+            width: 95%;
+            max-width: 900px;
+            z-index: 100;
+            box-shadow: 0 0 100px rgba(255, 0, 128, 0.8),
+                        0 0 200px rgba(0, 255, 204, 0.6),
+                        0 0 300px rgba(255, 235, 59, 0.4);
+            backdrop-filter: blur(10px);
+        }
+        
+        .decision-modal.active {
+            display: block;
+            animation: modalAppear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes modalAppear {
+            from { 
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+            }
+            to { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+        }
+        
+        .decision-title {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #ff0080, #00ffcc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+        }
+        
+        .decision-question {
+            font-size: 2.2rem;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            color: #ffeb3b;
+            font-weight: 700;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 35px;
+            border-radius: 20px;
+            border-left: 6px solid #ff0080;
+            border-right: 6px solid #00ffcc;
+            text-shadow: 0 0 20px rgba(255, 235, 59, 0.5);
+        }
+        
+        .decision-options {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .decision-option {
+            background: linear-gradient(135deg, 
+                rgba(255, 0, 128, 0.3) 0%,
+                rgba(0, 255, 204, 0.3) 100%);
+            border: 3px solid transparent;
+            border-image: linear-gradient(45deg, #ff0080, #00ffcc) 1;
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .decision-option:hover {
+            background: linear-gradient(135deg, 
+                rgba(255, 0, 128, 0.5) 0%,
+                rgba(0, 255, 204, 0.5) 100%);
+            transform: translateX(20px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(255, 0, 128, 0.4);
+        }
+        
+        .decision-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.6s;
+        }
+        
+        .decision-option:hover::before {
+            left: 100%;
+        }
+        
+        .game-over-modal, .game-win-modal {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 8px solid;
+            border-radius: 30px;
+            padding: 60px;
+            width: 95%;
+            max-width: 900px;
+            text-align: center;
+            z-index: 200;
+            backdrop-filter: blur(20px);
+        }
+        
+        .game-over-modal {
+            background: linear-gradient(135deg, 
+                rgba(183, 28, 28, 0.95) 0%,
+                rgba(211, 47, 47, 0.95) 100%);
+            border-image: linear-gradient(45deg, #ff5252, #ff8a80) 1;
+            box-shadow: 0 0 150px rgba(255, 82, 82, 0.9);
+        }
+        
+        .game-win-modal {
+            background: linear-gradient(135deg, 
+                rgba(27, 94, 32, 0.95) 0%,
+                rgba(56, 142, 60, 0.95) 100%);
+            border-image: linear-gradient(45deg, #4CAF50, #81C784) 1;
+            box-shadow: 0 0 150px rgba(76, 175, 80, 0.9);
+        }
+        
+        .game-over-modal.active, .game-win-modal.active {
+            display: block;
+            animation: modalAppear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .game-over-title, .game-win-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+        
+        .game-over-title {
+            background: linear-gradient(45deg, #ff8a80, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 40px rgba(255, 138, 128, 0.7);
+        }
+        
+        .game-win-title {
+            background: linear-gradient(45deg, #81C784, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 40px rgba(129, 199, 132, 0.7);
+        }
+        
+        .game-over-text, .game-win-text {
+            font-size: 2.2rem;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        
+        .game-over-text {
+            color: #ffccbc;
+            text-shadow: 0 0 20px rgba(255, 204, 188, 0.5);
+        }
+        
+        .game-win-text {
+            color: #c8e6c9;
+            text-shadow: 0 0 20px rgba(200, 230, 201, 0.5);
+        }
+        
+        .restart-btn {
+            background: linear-gradient(145deg, 
+                #ff9800 0%, 
+                #ffb74d 50%, 
+                #ff9800 100%);
+            color: white;
+            border: none;
+            padding: 35px 70px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 4px solid #ffeb3b;
+            box-shadow: 0 15px 0 #f57c00,
+                        0 25px 50px rgba(255, 152, 0, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 25px rgba(255, 235, 59, 0.8);
+        }
+        
+        .restart-btn:hover {
+            background: linear-gradient(145deg, 
+                #ffb74d 0%, 
+                #ffcc80 50%, 
+                #ffb74d 100%);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 0 #f57c00,
+                        0 35px 70px rgba(255, 183, 77, 0.8);
+        }
+        
+        .instructions {
+            background: linear-gradient(135deg, 
+                rgba(48, 63, 159, 0.9) 0%,
+                rgba(57, 73, 171, 0.9) 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 1400px;
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #ffeb3b, #00ffcc) 1;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                        inset 0 0 40px rgba(255, 235, 59, 0.2);
+        }
+        
+        .instructions h3 {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #ffeb3b, #00ffcc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 35px;
+            font-size: 2.8rem;
+            text-shadow: 0 0 30px rgba(255, 235, 59, 0.5);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .instructions-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 35px;
+            margin-bottom: 40px;
+        }
+        
+        .instruction-item {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #ff0080, #00ffcc) 1;
+        }
+        
+        .instruction-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.3);
+        }
+        
+        .instruction-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 3rem;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid;
+        }
+        
+        .instruction-icon.good {
+            background: linear-gradient(145deg, #00ffcc, #00b4db);
+            border-image: linear-gradient(45deg, #00ffcc, #ffffff) 1;
+        }
+        
+        .instruction-icon.bad {
+            background: linear-gradient(145deg, #ff0080, #ff5252);
+            border-image: linear-gradient(45deg, #ff0080, #ffffff) 1;
+        }
+        
+        .instruction-icon.decision {
+            background: linear-gradient(145deg, #ffeb3b, #ff9800);
+            border-image: linear-gradient(45deg, #ffeb3b, #ffffff) 1;
+        }
+        
+        .instruction-text {
+            flex: 1;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            font-weight: 700;
+            color: #e3f2fd;
+            text-shadow: 0 0 15px rgba(227, 242, 253, 0.3);
+        }
+        
+        .instructions p {
+            font-size: 2rem;
+            line-height: 1.6;
+            color: #c5cae9;
+            font-weight: 700;
+            text-align: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 6px solid #ff9800;
+            border-right: 6px solid #00ffcc;
+            margin-top: 20px;
+        }
+        
+        .urgency-alert {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #ff0080, #ff5252);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.5rem;
+            text-shadow: 0 0 30px rgba(255, 0, 128, 0.8);
+            animation: alertPulse 0.8s infinite;
+            display: none;
+            z-index: 50;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            border-bottom: 4px solid #ff0080;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        
+        @keyframes alertPulse {
+            0%, 100% { 
+                transform: scale(1);
+                text-shadow: 0 0 30px rgba(255, 0, 128, 0.8),
+                             0 0 60px rgba(255, 82, 82, 0.6);
+            }
+            50% { 
+                transform: scale(1.08);
+                text-shadow: 0 0 40px rgba(255, 0, 128, 1),
+                             0 0 80px rgba(255, 82, 82, 0.8);
+            }
+        }
+        
+        .speed-indicator {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 35px;
+            border-radius: 15px;
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #00ffcc, #ff0080) 1;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #00ffcc;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .collect-animation {
+            position: absolute;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            z-index: 30;
+            pointer-events: none;
+            animation: floatUp 1.5s ease-out forwards;
+            text-shadow: 0 0 20px currentColor;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) scale(1.8);
+                opacity: 0;
+            }
+        }
+        
+        .nitro-effect {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(0, 255, 204, 0.3) 50%,
+                transparent 100%);
+            filter: blur(10px);
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .stat-value {
+                font-size: 2.8rem;
+                padding: 20px 30px;
+            }
+            
+            .control-btn {
+                padding: 30px 50px;
+                font-size: 1.8rem;
+                min-width: 240px;
+            }
+            
+            #gameCanvas {
+                width: 100%;
+                height: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 25px;
+                padding: 25px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+            }
+            
+            .control-btn {
+                width: 95%;
+                min-width: auto;
+                padding: 35px;
+            }
+            
+            .instructions-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .decision-question,
+            .game-over-text,
+            .game-win-text {
+                font-size: 1.8rem;
+            }
+            
+            .decision-title,
+            .game-over-title,
+            .game-win-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.6rem;
+            }
+            
+            .stat-value {
+                font-size: 2.2rem;
+                padding: 15px 20px;
+            }
+            
+            .stat-label {
+                font-size: 1.4rem;
+            }
+            
+            .control-btn {
+                font-size: 1.5rem;
+                padding: 25px;
+            }
+            
+            .instructions {
+                padding: 25px;
+            }
+            
+            .instruction-text {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>冲刺高才！</h1>
+        <p class="subtitle">香港高才通A类申请跑酷挑战</p>
+        <p class="tagline">收集材料，避开陷阱，抓住最后机会！</p>
+    </div>
+    
+    <div class="urgency-alert" id="urgencyAlert">⚠️ 新规已生效！申请窗口正在缩小！ ⚠️</div>
+    
+    <div class="game-container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-label">申请窗口倒计时</div>
+                <div class="stat-value" id="timer">60秒</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">材料完整度</div>
+                <div class="stat-value" id="integrity">60%</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">已收集材料</div>
+                <div class="stat-value" id="collected">0/8</div>
+            </div>
+        </div>
+        
+        <div class="game-wrapper">
+            <div class="speed-indicator" id="speedIndicator">速度: 5.0</div>
+            <canvas id="gameCanvas" width="1300" height="650"></canvas>
+            
+            <!-- 决策模态框 -->
+            <div class="decision-modal" id="decisionModal">
+                <h2 class="decision-title">❗ 关键决策点 ❗</h2>
+                <p class="decision-question" id="decisionQuestion">你的公司利润达标，但持股仅8个月，你应该？</p>
+                <div class="decision-options" id="decisionOptions">
+                    <!-- 选项将由JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 游戏结束模态框 -->
+            <div class="game-over-modal" id="gameOverModal">
+                <h2 class="game-over-title">❌ 申请失败 ❌</h2>
+                <p class="game-over-text" id="gameOverText">申请窗口已关闭，您未能在规定时间内提交完整材料。</p>
+                <button class="restart-btn" onclick="restartGame()">重新挑战</button>
+            </div>
+            
+            <!-- 游戏胜利模态框 -->
+            <div class="game-win-modal" id="gameWinModal">
+                <h2 class="game-win-title">✅ 申请成功！ ✅</h2>
+                <p class="game-win-text" id="gameWinText">恭喜！您已成功收集所有材料并做出正确决策，高才A类申请成功递交！</p>
+                <button class="restart-btn" onclick="restartGame()">再次挑战</button>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn middle" id="middleBtn">保持中线</button>
+            <button class="control-btn up" id="upBtn">向上移动</button>
+            <button class="control-btn down" id="downBtn">向下移动</button>
+        </div>
+    </div>
+    
+    <div class="instructions">
+        <h3>🎮 游戏指南</h3>
+        <div class="instructions-list">
+            <div class="instruction-item">
+                <div class="instruction-icon good">📊</div>
+                <div class="instruction-text"><strong>金色材料：</strong>收集审计报告、银行流水等关键材料，增加完整度</div>
+            </div>
+            <div class="instruction-item">
+                <div class="instruction-icon bad">⚠️</div>
+                <div class="instruction-text"><strong>红色陷阱：</strong>避开临时股权协议、虚假流水等，否则会减少完整度</div>
+            </div>
+            <div class="instruction-item">
+                <div class="instruction-icon decision">❓</div>
+                <div class="instruction-text"><strong>决策点：</strong>遇到政策咨询官时，选择正确答案可获得加成</div>
+            </div>
+            <div class="instruction-item">
+                <div class="instruction-icon">⏰</div>
+                <div class="instruction-text"><strong>紧迫感：</strong>游戏速度会逐渐加快，倒计时结束即申请失败</div>
+            </div>
+        </div>
+        <p><strong>目标：</strong>在60秒内收集8份关键材料，使材料完整度达到100%，并做出正确决策！</p>
+        <p><strong>操作：</strong>点击按钮或使用键盘方向键（↑/↓）控制上下移动，空格键回到中线</p>
+    </div>
+
+    <script>
+        // 游戏状态变量
+        const gameState = {
+            canvas: null,
+            ctx: null,
+            gameWidth: 1300,
+            gameHeight: 650,
+            player: null,
+            items: [],
+            obstacles: [],
+            gameSpeed: 5,
+            baseSpeed: 5,
+            timer: 60,
+            integrity: 60,
+            collected: 0,
+            totalToCollect: 8,
+            gameActive: true,
+            decisionActive: false,
+            lastItemTime: 0,
+            itemInterval: 800,
+            lastObstacleTime: 0,
+            obstacleInterval: 1200,
+            currentDecision: null,
+            collectAnimations: [],
+            nitroEffects: [],
+            lastSpeedIncrease: 0,
+            speedIncreaseInterval: 7000,
+            decisionPoints: [
+                {
+                    question: "你的公司利润达标，但持股仅8个月，你应该？",
+                    options: [
+                        { 
+                            text: "立即补足股份至50%并提交", 
+                            correct: false, 
+                            effect: -30, 
+                            message: "❌ 审核不通过！持股时间不足一年被拒绝。",
+                            color: "#ff0080"
+                        },
+                        { 
+                            text: "等待至持股满完整财务年度再申请", 
+                            correct: true, 
+                            effect: 25, 
+                            message: "✅ 正确！耐心规划获得加速buff。",
+                            color: "#00ffcc"
+                        },
+                        { 
+                            text: "尝试用其他收入补充", 
+                            correct: false, 
+                            effect: -20, 
+                            message: "⚠️ 风险选项！材料不一致被要求补充说明。",
+                            color: "#ff9800"
+                        }
+                    ]
+                },
+                {
+                    question: "申请过程中发现审计报告有瑕疵，你应该？",
+                    options: [
+                        { 
+                            text: "提交后再补交修正版", 
+                            correct: false, 
+                            effect: -25, 
+                            message: "❌ 诚信问题！申请被直接拒绝。",
+                            color: "#ff0080"
+                        },
+                        { 
+                            text: "立即重新审计并等待完整报告", 
+                            correct: true, 
+                            effect: 30, 
+                            message: "✅ 正确！严谨态度获得额外完整度。",
+                            color: "#00ffcc"
+                        },
+                        { 
+                            text: "忽略瑕疵直接提交", 
+                            correct: false, 
+                            effect: -40, 
+                            message: "❌ 严重错误！因材料不实被列入黑名单。",
+                            color: "#ff5252"
+                        }
+                    ]
+                },
+                {
+                    question: "收到补件通知，但截止日期很紧，你应该？",
+                    options: [
+                        { 
+                            text: "匆忙准备可能不完整的材料", 
+                            correct: false, 
+                            effect: -20, 
+                            message: "⚠️ 材料不全！被要求再次补件，浪费时间。",
+                            color: "#ff9800"
+                        },
+                        { 
+                            text: "申请延期并准备完整材料", 
+                            correct: true, 
+                            effect: 20, 
+                            message: "✅ 明智之举！完整材料提高通过率。",
+                            color: "#00ffcc"
+                        },
+                        { 
+                            text: "放弃申请", 
+                            correct: false, 
+                            effect: -100, 
+                            message: "❌ 申请终止！机会流失。",
+                            color: "#ff0080"
+                        }
+                    ]
+                }
+            ],
+            urgencyMessages: [
+                "⚠️ 新规已生效！持股要求审查中！ ⚠️",
+                "⏰ 申请窗口正在缩小！立即行动！ ⏰",
+                "🚨 审核标准提高！抓紧最后机会！ 🚨",
+                "💼 最后一轮筛选！时间紧迫！ 💼",
+                "⚡ 政策可能再变！现在就申请！ ⚡"
+            ],
+            lastUrgencyMessage: 0,
+            urgencyMessageInterval: 6000,
+            roadLines: [],
+            lastRoadLineTime: 0,
+            roadLineInterval: 100
+        };
+
+        // 可爱卡通角色
+        class Player {
+            constructor() {
+                this.width = 70;
+                this.height = 100;
+                this.x = 150;
+                this.y = gameState.gameHeight / 2 - this.height / 2;
+                this.speedY = 0;
+                this.maxSpeed = 15;
+                this.color = "#2196F3";
+                this.faceColor = "#1976D2";
+                this.bagColor = "#FF9800";
+                this.animationFrame = 0;
+                this.isNitro = false;
+                this.nitroTime = 0;
+                this.wingAngle = 0;
+            }
+            
+            update() {
+                this.y += this.speedY;
+                
+                if (this.y < 20) this.y = 20;
+                if (this.y + this.height > gameState.gameHeight - 20) {
+                    this.y = gameState.gameHeight - this.height - 20;
+                }
+                
+                this.speedY *= 0.82;
+                this.animationFrame++;
+                this.wingAngle = Math.sin(this.animationFrame * 0.1) * 0.3;
+                
+                if (this.isNitro) {
+                    this.nitroTime--;
+                    if (this.nitroTime <= 0) {
+                        this.isNitro = false;
+                        gameState.gameSpeed = gameState.baseSpeed;
+                    }
+                    
+                    // 添加氮气效果
+                    if (this.animationFrame % 3 === 0) {
+                        gameState.nitroEffects.push({
+                            x: this.x - 20,
+                            y: this.y + this.height / 2,
+                            width: 40,
+                            height: 15,
+                            life: 30,
+                            color: Math.random() > 0.5 ? '#00ffcc' : '#ff0080'
+                        });
+                    }
+                }
+            }
+            
+            draw() {
+                gameState.ctx.save();
+                
+                // 氮气光环
+                if (this.isNitro) {
+                    const glowSize = Math.sin(this.animationFrame * 0.2) * 10 + 20;
+                    gameState.ctx.shadowColor = '#00ffcc';
+                    gameState.ctx.shadowBlur = glowSize;
+                    gameState.ctx.fillStyle = 'rgba(0, 255, 204, 0.3)';
+                    gameState.ctx.fillRect(this.x - 10, this.y - 10, this.width + 20, this.height + 20);
+                    gameState.ctx.shadowBlur = 0;
+                }
+                
+                // 绘制身体（飞车造型）
+                const gradient = gameState.ctx.createLinearGradient(
+                    this.x, this.y, 
+                    this.x + this.width, this.y + this.height
+                );
+                gradient.addColorStop(0, '#2196F3');
+                gradient.addColorStop(0.5, '#03A9F4');
+                gradient.addColorStop(1, '#2196F3');
+                
+                gameState.ctx.fillStyle = gradient;
+                gameState.ctx.beginPath();
+                gameState.ctx.roundRect(this.x, this.y + 20, this.width, this.height - 40, 20);
+                gameState.ctx.fill();
+                
+                // 车身装饰
+                gameState.ctx.fillStyle = '#FF9800';
+                gameState.ctx.beginPath();
+                gameState.ctx.roundRect(this.x + 10, this.y + 25, this.width - 20, 10, 5);
+                gameState.ctx.fill();
+                
+                gameState.ctx.fillStyle = '#FF4081';
+                gameState.ctx.beginPath();
+                gameState.ctx.roundRect(this.x + 15, this.y + 40, this.width - 30, 5, 2);
+                gameState.ctx.fill();
+                
+                // 绘制翅膀
+                gameState.ctx.save();
+                gameState.ctx.translate(this.x + this.width, this.y + this.height / 2);
+                gameState.ctx.rotate(this.wingAngle);
+                
+                // 左翅膀
+                gameState.ctx.fillStyle = '#00ffcc';
+                gameState.ctx.beginPath();
+                gameState.ctx.moveTo(0, 0);
+                gameState.ctx.lineTo(30, -20);
+                gameState.ctx.lineTo(30, 20);
+                gameState.ctx.closePath();
+                gameState.ctx.fill();
+                
+                // 翅膀装饰
+                gameState.ctx.fillStyle = '#ffffff';
+                gameState.ctx.beginPath();
+                gameState.ctx.ellipse(20, 0, 8, 25, 0, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                gameState.ctx.restore();
+                
+                // 绘制车轮
+                const wheelRadius = 15;
+                const wheelY = this.y + this.height - 15;
+                
+                // 前轮
+                gameState.ctx.fillStyle = '#212121';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(this.x + 25, wheelY, wheelRadius, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                gameState.ctx.fillStyle = '#00ffcc';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(this.x + 25, wheelY, wheelRadius * 0.6, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 后轮
+                gameState.ctx.fillStyle = '#212121';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(this.x + this.width - 25, wheelY, wheelRadius, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                gameState.ctx.fillStyle = '#ff0080';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(this.x + this.width - 25, wheelY, wheelRadius * 0.6, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 绘制可爱脸
+                const faceX = this.x + this.width / 2;
+                const faceY = this.y + 35;
+                
+                // 脸
+                gameState.ctx.fillStyle = '#FFECB3';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(faceX, faceY, 25, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 眼睛
+                gameState.ctx.fillStyle = '#2196F3';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(faceX - 10, faceY - 5, 8, 0, Math.PI * 2);
+                gameState.ctx.arc(faceX + 10, faceY - 5, 8, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 瞳孔
+                gameState.ctx.fillStyle = '#ffffff';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(faceX - 8, faceY - 7, 3, 0, Math.PI * 2);
+                gameState.ctx.arc(faceX + 12, faceY - 7, 3, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 嘴巴
+                gameState.ctx.strokeStyle = '#ff0080';
+                gameState.ctx.lineWidth = 3;
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(faceX, faceY + 10, 12, 0.2 * Math.PI, 0.8 * Math.PI);
+                gameState.ctx.stroke();
+                
+                // 绘制焦急表情（时间紧迫时）
+                if (gameState.timer < 30) {
+                    // 汗水
+                    gameState.ctx.fillStyle = '#4FC3F7';
+                    for (let i = 0; i < 4; i++) {
+                        const dropX = faceX - 15 + i * 10;
+                        const dropY = faceY + 25 + Math.sin(this.animationFrame * 0.2 + i) * 3;
+                        gameState.ctx.beginPath();
+                        gameState.ctx.ellipse(dropX, dropY, 2, 3, 0, 0, Math.PI * 2);
+                        gameState.ctx.fill();
+                    }
+                }
+                
+                // 头顶公文包图标
+                gameState.ctx.fillStyle = '#795548';
+                gameState.ctx.fillRect(faceX - 15, faceY - 40, 30, 20);
+                gameState.ctx.fillStyle = '#5D4037';
+                gameState.ctx.fillRect(faceX - 12, faceY - 37, 24, 4);
+                gameState.ctx.fillRect(faceX - 8, faceY - 30, 16, 2);
+                
+                gameState.ctx.restore();
+            }
+            
+            activateNitro() {
+                this.isNitro = true;
+                this.nitroTime = 180; // 3秒
+                gameState.gameSpeed = gameState.baseSpeed + 3;
+            }
+            
+            moveUp() {
+                this.speedY = -this.maxSpeed;
+            }
+            
+            moveDown() {
+                this.speedY = this.maxSpeed;
+            }
+            
+            moveMiddle() {
+                const middleY = gameState.gameHeight / 2 - this.height / 2;
+                if (Math.abs(this.y - middleY) > 5) {
+                    this.speedY = (middleY - this.y) * 0.4;
+                }
+            }
+        }
+
+        // 氮气效果
+        class NitroEffect {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.width = 40;
+                this.height = 15;
+                this.life = 30;
+                this.color = Math.random() > 0.5 ? '#00ffcc' : '#ff0080';
+            }
+            
+            update() {
+                this.x -= gameState.gameSpeed + 5;
+                this.life--;
+            }
+            
+            draw() {
+                gameState.ctx.save();
+                gameState.ctx.globalAlpha = this.life / 30;
+                gameState.ctx.fillStyle = this.color;
+                gameState.ctx.fillRect(this.x, this.y, this.width, this.height);
+                
+                gameState.ctx.shadowColor = this.color;
+                gameState.ctx.shadowBlur = 20;
+                gameState.ctx.fillRect(this.x, this.y, this.width, this.height);
+                gameState.ctx.restore();
+            }
+            
+            isFinished() {
+                return this.life <= 0;
+            }
+        }
+
+        // 收集动画
+        class CollectAnimation {
+            constructor(x, y, text, color) {
+                this.x = x;
+                this.y = y;
+                this.text = text;
+                this.color = color;
+                this.life = 90;
+                this.alpha = 1;
+                this.size = 1;
+            }
+            
+            update() {
+                this.y -= 2.5;
+                this.life--;
+                this.alpha = this.life / 90;
+                this.size = 1 + (1 - this.life / 90) * 0.8;
+            }
+            
+            draw() {
+                gameState.ctx.save();
+                gameState.ctx.globalAlpha = this.alpha;
+                gameState.ctx.font = `bold ${32 * this.size}px 'Orbitron'`;
+                gameState.ctx.fillStyle = this.color;
+                gameState.ctx.textAlign = "center";
+                gameState.ctx.textBaseline = "middle";
+                gameState.ctx.shadowColor = this.color;
+                gameState.ctx.shadowBlur = 20;
+                gameState.ctx.fillText(this.text, this.x, this.y);
+                gameState.ctx.restore();
+            }
+            
+            isFinished() {
+                return this.life <= 0;
+            }
+        }
+
+        // 道路线
+        class RoadLine {
+            constructor(y) {
+                this.x = gameState.gameWidth;
+                this.y = y;
+                this.width = 20;
+                this.height = 8;
+                this.speed = gameState.gameSpeed + 10;
+                this.color = '#00ffcc';
+            }
+            
+            update() {
+                this.x -= this.speed;
+            }
+            
+            draw() {
+                gameState.ctx.save();
+                gameState.ctx.shadowColor = this.color;
+                gameState.ctx.shadowBlur = 15;
+                gameState.ctx.fillStyle = this.color;
+                gameState.ctx.fillRect(this.x, this.y, this.width, this.height);
+                gameState.ctx.restore();
+            }
+            
+            isOffScreen() {
+                return this.x + this.width < 0;
+            }
+        }
+
+        // 游戏物品基类
+        class GameObject {
+            constructor(x, y, width, height, type) {
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+                this.type = type;
+                this.speed = gameState.gameSpeed;
+                this.pulse = 0;
+                this.rotation = 0;
+            }
+            
+            update() {
+                this.x -= this.speed;
+                this.pulse += 0.1;
+                this.rotation += 0.05;
+            }
+            
+            draw() {}
+            
+            isOffScreen() {
+                return this.x + this.width < 0;
+            }
+            
+            collidesWith(player) {
+                return player.x < this.x + this.width &&
+                       player.x + player.width > this.x &&
+                       player.y < this.y + this.height &&
+                       player.y + player.height > this.y;
+            }
+        }
+
+        // 材料物品（金色）
+        class MaterialItem extends GameObject {
+            constructor(x, y) {
+                const materialTypes = [
+                    { name: "审计报告", color: "#FFD700", icon: "📊", value: 15 },
+                    { name: "银行流水", color: "#FFD700", icon: "🏦", value: 12 },
+                    { name: "持股证明", color: "#FFD700", icon: "📈", value: 20 },
+                    { name: "税单", color: "#FFD700", icon: "🧾", value: 10 },
+                    { name: "公司注册证", color: "#FFD700", icon: "🏢", value: 8 },
+                    { name: "收入证明", color: "#FFD700", icon: "💰", value: 18 }
+                ];
+                const material = materialTypes[Math.floor(Math.random() * materialTypes.length)];
+                super(x, y, 60, 60, material);
+                this.color = material.color;
+                this.icon = material.icon;
+                this.value = material.value;
+                this.name = material.name;
+            }
+            
+            draw() {
+                gameState.ctx.save();
+                gameState.ctx.translate(this.x + this.width/2, this.y + this.height/2);
+                gameState.ctx.rotate(this.rotation);
+                
+                // 外发光
+                const glowSize = Math.sin(this.pulse) * 5 + 10;
+                gameState.ctx.shadowColor = this.color;
+                gameState.ctx.shadowBlur = glowSize;
+                
+                // 星形背景
+                gameState.ctx.fillStyle = this.color;
+                this.drawStar(0, 0, 5, 25, 12);
+                gameState.ctx.fill();
+                
+                gameState.ctx.shadowBlur = 0;
+                
+                // 内圆
+                gameState.ctx.fillStyle = '#FFF59D';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(0, 0, 20, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 图标
+                gameState.ctx.font = "28px Arial";
+                gameState.ctx.fillStyle = "#000000";
+                gameState.ctx.textAlign = "center";
+                gameState.ctx.textBaseline = "middle";
+                gameState.ctx.fillText(this.icon, 0, 0);
+                
+                // 价值显示
+                gameState.ctx.font = "bold 20px 'Orbitron'";
+                gameState.ctx.fillStyle = "#00ffcc";
+                gameState.ctx.fillText(`+${this.value}%`, 0, -45);
+                
+                gameState.ctx.restore();
+            }
+            
+            drawStar(cx, cy, spikes, outerRadius, innerRadius) {
+                let rot = Math.PI / 2 * 3;
+                let x = cx;
+                let y = cy;
+                let step = Math.PI / spikes;
+                
+                gameState.ctx.beginPath();
+                gameState.ctx.moveTo(cx, cy - outerRadius);
+                
+                for (let i = 0; i < spikes; i++) {
+                    x = cx + Math.cos(rot) * outerRadius;
+                    y = cy + Math.sin(rot) * outerRadius;
+                    gameState.ctx.lineTo(x, y);
+                    rot += step;
+                    
+                    x = cx + Math.cos(rot) * innerRadius;
+                    y = cy + Math.sin(rot) * innerRadius;
+                    gameState.ctx.lineTo(x, y);
+                    rot += step;
+                }
+                
+                gameState.ctx.lineTo(cx, cy - outerRadius);
+                gameState.ctx.closePath();
+            }
+        }
+
+        // 障碍物（红色）
+        class Obstacle extends GameObject {
+            constructor(x, y) {
+                const obstacleTypes = [
+                    { name: "临时股权", color: "#ff0080", icon: "⚠️", value: -25 },
+                    { name: "虚假流水", color: "#ff0080", icon: "📉", value: -30 },
+                    { name: "收入不达标", color: "#ff0080", icon: "📌", value: -35 },
+                    { name: "材料不齐", color: "#ff0080", icon: "📑", value: -20 }
+                ];
+                const obstacle = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
+                super(x, y, 60, 60, obstacle);
+                this.color = obstacle.color;
+                this.icon = obstacle.icon;
+                this.value = obstacle.value;
+                this.name = obstacle.name;
+            }
+            
+            draw() {
+                gameState.ctx.save();
+                gameState.ctx.translate(this.x + this.width/2, this.y + this.height/2);
+                gameState.ctx.rotate(this.rotation);
+                
+                // 红色发光
+                const glowSize = Math.sin(this.pulse * 2) * 5 + 15;
+                gameState.ctx.shadowColor = this.color;
+                gameState.ctx.shadowBlur = glowSize;
+                
+                // 三角形警告形状
+                gameState.ctx.fillStyle = this.color;
+                gameState.ctx.beginPath();
+                gameState.ctx.moveTo(0, -30);
+                gameState.ctx.lineTo(26, 15);
+                gameState.ctx.lineTo(-26, 15);
+                gameState.ctx.closePath();
+                gameState.ctx.fill();
+                
+                gameState.ctx.shadowBlur = 0;
+                
+                // 内圆
+                gameState.ctx.fillStyle = '#FFCDD2';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(0, 0, 18, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 图标
+                gameState.ctx.font = "28px Arial";
+                gameState.ctx.fillStyle = "#000000";
+                gameState.ctx.textAlign = "center";
+                gameState.ctx.textBaseline = "middle";
+                gameState.ctx.fillText(this.icon, 0, 0);
+                
+                // 伤害值
+                gameState.ctx.font = "bold 20px 'Orbitron'";
+                gameState.ctx.fillStyle = "#ffffff";
+                gameState.ctx.fillText(`${this.value}%`, 0, -45);
+                
+                gameState.ctx.restore();
+            }
+        }
+
+        // 决策点
+        class DecisionPoint extends GameObject {
+            constructor(x, y) {
+                super(x, y, 80, 80, "decision");
+                this.color = "#ffeb3b";
+                this.icon = "❓";
+                this.pulse = 0;
+            }
+            
+            draw() {
+                gameState.ctx.save();
+                gameState.ctx.translate(this.x + this.width/2, this.y + this.height/2);
+                
+                // 旋转光环
+                gameState.ctx.rotate(this.pulse);
+                
+                // 多重光环效果
+                for (let i = 0; i < 3; i++) {
+                    gameState.ctx.save();
+                    gameState.ctx.rotate(i * Math.PI / 3);
+                    const gradient = gameState.ctx.createRadialGradient(0, 0, 0, 0, 0, 40);
+                    gradient.addColorStop(0, i === 0 ? '#ffeb3b' : i === 1 ? '#00ffcc' : '#ff0080');
+                    gradient.addColorStop(1, 'transparent');
+                    gameState.ctx.fillStyle = gradient;
+                    gameState.ctx.beginPath();
+                    gameState.ctx.arc(0, 0, 40, 0, Math.PI * 2);
+                    gameState.ctx.fill();
+                    gameState.ctx.restore();
+                }
+                
+                gameState.ctx.rotate(-this.pulse);
+                
+                // 中心圆
+                const gradient = gameState.ctx.createRadialGradient(0, 0, 0, 0, 0, 35);
+                gradient.addColorStop(0, '#ffeb3b');
+                gradient.addColorStop(1, '#FF9800');
+                gameState.ctx.fillStyle = gradient;
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(0, 0, 35, 0, Math.PI * 2);
+                gameState.ctx.fill();
+                
+                // 问号图标
+                gameState.ctx.font = "bold 40px Arial";
+                gameState.ctx.fillStyle = "#ffffff";
+                gameState.ctx.textAlign = "center";
+                gameState.ctx.textBaseline = "middle";
+                gameState.ctx.shadowColor = "#000000";
+                gameState.ctx.shadowBlur = 10;
+                gameState.ctx.fillText(this.icon, 0, 0);
+                
+                gameState.ctx.restore();
+            }
+            
+            update() {
+                super.update();
+                this.pulse += 0.05;
+            }
+        }
+
+        // 初始化游戏
+        function initGame() {
+            gameState.canvas = document.getElementById('gameCanvas');
+            gameState.ctx = gameState.canvas.getContext('2d');
+            
+            // 设置圆角矩形方法
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+                if (w < 2 * r) r = w / 2;
+                if (h < 2 * r) r = h / 2;
+                this.beginPath();
+                this.moveTo(x + r, y);
+                this.arcTo(x + w, y, x + w, y + h, r);
+                this.arcTo(x + w, y + h, x, y + h, r);
+                this.arcTo(x, y + h, x, y, r);
+                this.arcTo(x, y, x + w, y, r);
+                this.closePath();
+                return this;
+            };
+            
+            gameState.player = new Player();
+            
+            // 控制按钮事件
+            ['upBtn', 'downBtn', 'middleBtn'].forEach(id => {
+                document.getElementById(id).addEventListener('click', () => {
+                    if (!gameState.gameActive || gameState.decisionActive) return;
+                    const action = id.replace('Btn', '');
+                    gameState.player[`move${action.charAt(0).toUpperCase() + action.slice(1)}`]();
+                });
+            });
+            
+            // 键盘控制
+            document.addEventListener('keydown', (e) => {
+                if (!gameState.gameActive || gameState.decisionActive) return;
+                
+                switch(e.key) {
+                    case 'ArrowUp':
+                    case 'w':
+                    case 'W':
+                        gameState.player.moveUp();
+                        e.preventDefault();
+                        break;
+                    case 'ArrowDown':
+                    case 's':
+                    case 'S':
+                        gameState.player.moveDown();
+                        e.preventDefault();
+                        break;
+                    case ' ':
+                        gameState.player.moveMiddle();
+                        e.preventDefault();
+                        break;
+                    case 'n':
+                    case 'N':
+                        if (!gameState.player.isNitro) {
+                            gameState.player.activateNitro();
+                        }
+                        break;
+                }
+            });
+            
+            // 触摸控制
+            let touchStartY = 0;
+            gameState.canvas.addEventListener('touchstart', (e) => {
+                if (!gameState.gameActive || gameState.decisionActive) return;
+                touchStartY = e.touches[0].clientY;
+                e.preventDefault();
+            });
+            
+            gameState.canvas.addEventListener('touchmove', (e) => {
+                if (!gameState.gameActive || gameState.decisionActive) return;
+                const touchY = e.touches[0].clientY;
+                const deltaY = touchY - touchStartY;
+                
+                if (deltaY > 30) {
+                    gameState.player.moveDown();
+                } else if (deltaY < -30) {
+                    gameState.player.moveUp();
+                }
+                e.preventDefault();
+            });
+            
+            gameLoop();
+        }
+
+        // 生成游戏元素
+        function generateItems() {
+            const currentTime = Date.now();
+            
+            // 生成材料
+            if (currentTime - gameState.lastItemTime > gameState.itemInterval) {
+                const y = Math.random() * (gameState.gameHeight - 120) + 40;
+                gameState.items.push(new MaterialItem(gameState.gameWidth, y));
+                gameState.lastItemTime = currentTime;
+            }
+            
+            // 生成障碍
+            if (currentTime - gameState.lastObstacleTime > gameState.obstacleInterval) {
+                const y = Math.random() * (gameState.gameHeight - 120) + 40;
+                gameState.obstacles.push(new Obstacle(gameState.gameWidth, y));
+                gameState.lastObstacleTime = currentTime;
+            }
+            
+            // 生成决策点
+            if (gameState.items.length + gameState.obstacles.length > 15 && 
+                Math.random() < 0.0015 && 
+                !gameState.decisionActive) {
+                const y = Math.random() * (gameState.gameHeight - 160) + 60;
+                gameState.items.push(new DecisionPoint(gameState.gameWidth, y));
+            }
+            
+            // 生成道路线
+            if (currentTime - gameState.lastRoadLineTime > gameState.roadLineInterval) {
+                for (let i = 0; i < 3; i++) {
+                    const y = 100 + i * 150;
+                    gameState.roadLines.push(new RoadLine(y));
+                }
+                gameState.lastRoadLineTime = currentTime;
+            }
+            
+            // 增加速度
+            if (currentTime - gameState.lastSpeedIncrease > gameState.speedIncreaseInterval) {
+                gameState.gameSpeed += 0.8;
+                gameState.baseSpeed += 0.8;
+                gameState.lastSpeedIncrease = currentTime;
+                showUrgencyMessage();
+            }
+            
+            // 紧迫消息
+            if (currentTime - gameState.lastUrgencyMessage > gameState.urgencyMessageInterval) {
+                showUrgencyMessage();
+                gameState.lastUrgencyMessage = currentTime;
+            }
+        }
+
+        // 显示紧迫消息
+        function showUrgencyMessage() {
+            const message = gameState.urgencyMessages[Math.floor(Math.random() * gameState.urgencyMessages.length)];
+            const alertElement = document.getElementById('urgencyAlert');
+            alertElement.textContent = message;
+            alertElement.style.display = 'block';
+            
+            setTimeout(() => {
+                alertElement.style.display = 'none';
+            }, 4000);
+        }
+
+        // 碰撞检测
+        function checkCollisions() {
+            // 材料碰撞
+            for (let i = gameState.items.length - 1; i >= 0; i--) {
+                const item = gameState.items[i];
+                
+                if (item.collidesWith(gameState.player)) {
+                    if (item.type.name === "决策点") {
+                        triggerDecision();
+                        gameState.items.splice(i, 1);
+                        break;
+                    } else {
+                        gameState.integrity = Math.min(100, gameState.integrity + item.value);
+                        gameState.collected++;
+                        
+                        gameState.collectAnimations.push(
+                            new CollectAnimation(
+                                gameState.player.x + gameState.player.width / 2,
+                                gameState.player.y,
+                                `+${item.value}% ${item.icon}`,
+                                "#00ffcc"
+                            )
+                        );
+                        
+                        gameState.items.splice(i, 1);
+                        
+                        // 收集到材料时有概率获得氮气
+                        if (Math.random() < 0.2 && !gameState.player.isNitro) {
+                            gameState.player.activateNitro();
+                        }
+                    }
+                }
+            }
+            
+            // 障碍碰撞
+            for (let i = gameState.obstacles.length - 1; i >= 0; i--) {
+                const obstacle = gameState.obstacles[i];
+                
+                if (obstacle.collidesWith(gameState.player)) {
+                    gameState.integrity = Math.max(0, gameState.integrity + obstacle.value);
+                    
+                    gameState.collectAnimations.push(
+                        new CollectAnimation(
+                            gameState.player.x + gameState.player.width / 2,
+                            gameState.player.y,
+                            `${obstacle.value}% ${obstacle.icon}`,
+                            "#ff0080"
+                        )
+                    );
+                    
+                    gameState.obstacles.splice(i, 1);
+                    
+                    if (gameState.integrity <= 0) {
+                        endGame("材料完整度归零，申请被拒！");
+                    }
+                }
+            }
+        }
+
+        // 触发决策
+        function triggerDecision() {
+            gameState.decisionActive = true;
+            gameState.currentDecision = gameState.decisionPoints[
+                Math.floor(Math.random() * gameState.decisionPoints.length)
+            ];
+            
+            const modal = document.getElementById('decisionModal');
+            const question = document.getElementById('decisionQuestion');
+            const options = document.getElementById('decisionOptions');
+            
+            question.textContent = gameState.currentDecision.question;
+            options.innerHTML = '';
+            
+            gameState.currentDecision.options.forEach((option, index) => {
+                const button = document.createElement('div');
+                button.className = 'decision-option';
+                button.textContent = `${String.fromCharCode(65 + index)}. ${option.text}`;
+                button.dataset.index = index;
+                button.style.background = `linear-gradient(135deg, 
+                    ${option.color}40, 
+                    ${option.color}80)`;
+                button.addEventListener('click', () => handleDecision(index));
+                options.appendChild(button);
+            });
+            
+            modal.classList.add('active');
+        }
+
+        // 处理决策
+        function handleDecision(optionIndex) {
+            const option = gameState.currentDecision.options[optionIndex];
+            const modal = document.getElementById('decisionModal');
+            
+            gameState.integrity = Math.min(100, Math.max(0, gameState.integrity + option.effect));
+            
+            gameState.collectAnimations.push(
+                new CollectAnimation(
+                    gameState.player.x + gameState.player.width / 2,
+                    gameState.player.y,
+                    option.message.split(' ')[0],
+                    option.color
+                )
+            );
+            
+            if (option.correct) {
+                gameState.player.activateNitro();
+            }
+            
+            modal.classList.remove('active');
+            gameState.decisionActive = false;
+            
+            if (gameState.integrity <= 0) {
+                endGame("决策失误导致申请被拒！");
+            }
+        }
+
+        // 更新游戏
+        function updateGame() {
+            if (!gameState.gameActive) return;
+            
+            gameState.player.update();
+            generateItems();
+            
+            // 更新所有元素
+            gameState.items.forEach(item => {
+                item.speed = gameState.gameSpeed;
+                item.update();
+            });
+            gameState.obstacles.forEach(obstacle => {
+                obstacle.speed = gameState.gameSpeed;
+                obstacle.update();
+            });
+            gameState.roadLines.forEach(line => {
+                line.speed = gameState.gameSpeed + 10;
+                line.update();
+            });
+            gameState.nitroEffects.forEach(effect => effect.update());
+            gameState.collectAnimations.forEach(anim => anim.update());
+            
+            // 清理
+            gameState.items = gameState.items.filter(item => !item.isOffScreen());
+            gameState.obstacles = gameState.obstacles.filter(obstacle => !obstacle.isOffScreen());
+            gameState.roadLines = gameState.roadLines.filter(line => !line.isOffScreen());
+            gameState.nitroEffects = gameState.nitroEffects.filter(effect => !effect.isFinished());
+            gameState.collectAnimations = gameState.collectAnimations.filter(anim => !anim.isFinished());
+            
+            checkCollisions();
+            gameState.timer -= 1/60;
+            updateUI();
+            
+            if (gameState.timer <= 0) {
+                endGame("申请窗口已关闭，未能在规定时间内提交完整材料！");
+            } else if (gameState.integrity >= 100 && gameState.collected >= gameState.totalToCollect) {
+                winGame();
+            }
+        }
+
+        // 更新UI
+        function updateUI() {
+            const seconds = Math.max(0, Math.ceil(gameState.timer));
+            const timerElement = document.getElementById('timer');
+            timerElement.textContent = `${seconds}秒`;
+            
+            if (seconds <= 10) {
+                timerElement.className = 'stat-value danger';
+            } else if (seconds <= 25) {
+                timerElement.className = 'stat-value warning';
+            } else {
+                timerElement.className = 'stat-value';
+            }
+            
+            const integrityElement = document.getElementById('integrity');
+            integrityElement.textContent = `${Math.floor(gameState.integrity)}%`;
+            
+            if (gameState.integrity <= 25) {
+                integrityElement.className = 'stat-value danger';
+            } else if (gameState.integrity <= 50) {
+                integrityElement.className = 'stat-value warning';
+            } else {
+                integrityElement.className = 'stat-value';
+            }
+            
+            const collectedElement = document.getElementById('collected');
+            collectedElement.textContent = `${gameState.collected}/${gameState.totalToCollect}`;
+            
+            if (gameState.collected >= gameState.totalToCollect) {
+                collectedElement.className = 'stat-value';
+            } else if (gameState.collected >= gameState.totalToCollect / 2) {
+                collectedElement.className = 'stat-value warning';
+            } else {
+                collectedElement.className = 'stat-value';
+            }
+            
+            const speedElement = document.getElementById('speedIndicator');
+            speedElement.textContent = `速度: ${gameState.gameSpeed.toFixed(1)}`;
+            speedElement.style.color = gameState.gameSpeed > 9 ? '#ff0080' : 
+                                      gameState.gameSpeed > 7 ? '#ff9800' : '#00ffcc';
+        }
+
+        // 绘制游戏
+        function drawGame() {
+            gameState.ctx.clearRect(0, 0, gameState.gameWidth, gameState.gameHeight);
+            drawBackground();
+            
+            // 绘制道路线
+            gameState.roadLines.forEach(line => line.draw());
+            
+            // 绘制氮气效果
+            gameState.nitroEffects.forEach(effect => effect.draw());
+            
+            // 绘制物品
+            gameState.items.forEach(item => item.draw());
+            gameState.obstacles.forEach(obstacle => obstacle.draw());
+            
+            // 绘制收集动画
+            gameState.collectAnimations.forEach(anim => anim.draw());
+            
+            // 绘制玩家
+            gameState.player.draw();
+            
+            drawGameInfo();
+        }
+
+        // 绘制背景
+        function drawBackground() {
+            // 渐变天空
+            const gradient = gameState.ctx.createLinearGradient(0, 0, 0, gameState.gameHeight);
+            gradient.addColorStop(0, "#000428");
+            gradient.addColorStop(0.5, "#004e92");
+            gradient.addColorStop(1, "#00b4db");
+            gameState.ctx.fillStyle = gradient;
+            gameState.ctx.fillRect(0, 0, gameState.gameWidth, gameState.gameHeight);
+            
+            // 流动星空
+            for (let i = 0; i < 50; i++) {
+                const x = (Date.now() * 0.1 + i * 100) % (gameState.gameWidth + 200) - 100;
+                const y = (i * 30) % gameState.gameHeight;
+                const size = 2 + Math.sin(Date.now() * 0.001 + i) * 1;
+                
+                gameState.ctx.fillStyle = i % 3 === 0 ? '#00ffcc' : i % 3 === 1 ? '#ff0080' : '#ffeb3b';
+                gameState.ctx.beginPath();
+                gameState.ctx.arc(x, y, size, 0, Math.PI * 2);
+                gameState.ctx.fill();
+            }
+            
+            // 赛道路面
+            gameState.ctx.fillStyle = 'rgba(33, 33, 33, 0.9)';
+            gameState.ctx.fillRect(0, 50, gameState.gameWidth, gameState.gameHeight - 100);
+            
+            // 路边霓虹灯
+            for (let i = 0; i < 20; i++) {
+                const x = (Date.now() * 0.2 + i * 200) % (gameState.gameWidth + 400) - 200;
+                
+                // 左边灯
+                const gradient = gameState.ctx.createLinearGradient(x, 80, x, 150);
+                gradient.addColorStop(0, '#ff0080');
+                gradient.addColorStop(1, '#ff5252');
+                gameState.ctx.fillStyle = gradient;
+                gameState.ctx.fillRect(x, 80, 40, 70);
+                
+                // 右边灯
+                gameState.ctx.fillStyle = gradient;
+                gameState.ctx.fillRect(x, gameState.gameHeight - 150, 40, 70);
+            }
+        }
+
+        // 绘制游戏信息
+        function drawGameInfo() {
+            // 时间条
+            const timeBarWidth = 350;
+            const timeBarHeight = 25;
+            const timeBarX = gameState.gameWidth - timeBarWidth - 60;
+            const timeBarY = 50;
+            const timePercentage = gameState.timer / 60;
+            
+            gameState.ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            gameState.ctx.fillRect(timeBarX, timeBarY, timeBarWidth, timeBarHeight);
+            
+            let timeColor = timePercentage > 0.5 ? '#00ffcc' : 
+                           timePercentage > 0.25 ? '#ff9800' : '#ff0080';
+            
+            const gradient = gameState.ctx.createLinearGradient(
+                timeBarX, timeBarY, 
+                timeBarX + timeBarWidth * timePercentage, timeBarY + timeBarHeight
+            );
+            gradient.addColorStop(0, timeColor);
+            gradient.addColorStop(1, `${timeColor}80`);
+            gameState.ctx.fillStyle = gradient;
+            gameState.ctx.fillRect(timeBarX, timeBarY, timeBarWidth * timePercentage, timeBarHeight);
+            
+            gameState.ctx.strokeStyle = '#ffffff';
+            gameState.ctx.lineWidth = 3;
+            gameState.ctx.strokeRect(timeBarX, timeBarY, timeBarWidth, timeBarHeight);
+            
+            gameState.ctx.font = "bold 24px 'Orbitron'";
+            gameState.ctx.fillStyle = "#ffffff";
+            gameState.ctx.textAlign = "left";
+            gameState.ctx.fillText("申请窗口", timeBarX, timeBarY - 15);
+            
+            // 氮气指示器
+            if (gameState.player.isNitro) {
+                const nitroWidth = 200;
+                const nitroHeight = 20;
+                const nitroX = 60;
+                const nitroY = 50;
+                const nitroPercentage = gameState.player.nitroTime / 180;
+                
+                gameState.ctx.fillStyle = 'rgba(0, 255, 204, 0.2)';
+                gameState.ctx.fillRect(nitroX, nitroY, nitroWidth, nitroHeight);
+                
+                const nitroGradient = gameState.ctx.createLinearGradient(
+                    nitroX, nitroY, 
+                    nitroX + nitroWidth * nitroPercentage, nitroY + nitroHeight
+                );
+                nitroGradient.addColorStop(0, '#00ffcc');
+                nitroGradient.addColorStop(1, '#00b4db');
+                gameState.ctx.fillStyle = nitroGradient;
+                gameState.ctx.fillRect(nitroX, nitroY, nitroWidth * nitroPercentage, nitroHeight);
+                
+                gameState.ctx.strokeStyle = '#00ffcc';
+                gameState.ctx.lineWidth = 3;
+                gameState.ctx.strokeRect(nitroX, nitroY, nitroWidth, nitroHeight);
+                
+                gameState.ctx.font = "bold 24px 'Orbitron'";
+                gameState.ctx.fillStyle = "#00ffcc";
+                gameState.ctx.fillText("氮气加速", nitroX, nitroY - 15);
+            }
+        }
+
+        // 游戏循环
+        function gameLoop() {
+            updateGame();
+            drawGame();
+            
+            if (gameState.gameActive) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        // 游戏结束
+        function endGame(reason) {
+            gameState.gameActive = false;
+            const modal = document.getElementById('gameOverModal');
+            const text = document.getElementById('gameOverText');
+            text.textContent = reason;
+            modal.classList.add('active');
+        }
+
+        // 游戏胜利
+        function winGame() {
+            gameState.gameActive = false;
+            const modal = document.getElementById('gameWinModal');
+            const text = document.getElementById('gameWinText');
+            text.textContent = `恭喜！您在${Math.ceil(60 - gameState.timer)}秒内成功收集所有材料（${gameState.collected}/8），材料完整度达到${Math.floor(gameState.integrity)}%，高才A类申请成功递交！`;
+            modal.classList.add('active');
+        }
+
+        // 重新开始
+        function restartGame() {
+            gameState.player = new Player();
+            gameState.items = [];
+            gameState.obstacles = [];
+            gameState.collectAnimations = [];
+            gameState.nitroEffects = [];
+            gameState.roadLines = [];
+            gameState.gameSpeed = 5;
+            gameState.baseSpeed = 5;
+            gameState.timer = 60;
+            gameState.integrity = 60;
+            gameState.collected = 0;
+            gameState.gameActive = true;
+            gameState.decisionActive = false;
+            gameState.lastItemTime = 0;
+            gameState.lastObstacleTime = 0;
+            gameState.lastSpeedIncrease = Date.now();
+            gameState.lastUrgencyMessage = Date.now();
+            
+            document.getElementById('gameOverModal').classList.remove('active');
+            document.getElementById('gameWinModal').classList.remove('active');
+            document.getElementById('decisionModal').classList.remove('active');
+            document.getElementById('urgencyAlert').style.display = 'none';
+            
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.onload = initGame;
+    </script>
+</body>
+</html>
